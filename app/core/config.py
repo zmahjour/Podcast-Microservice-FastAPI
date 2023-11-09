@@ -13,6 +13,10 @@ class Settings(BaseSettings):
     ACCESS_EXPIRE_TIME: timedelta = timedelta(days=1)
     REFRESH_EXPIRE_TIME: timedelta = timedelta(days=30)
 
+    # Redis
+    REDIS_HOST: str
+    REDIS_PORT: int
+    REDIS_DB: int
 
     RSS_APP_BASE_URL: str
 
