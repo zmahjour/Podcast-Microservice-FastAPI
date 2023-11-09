@@ -51,3 +51,4 @@ class JWTAuthentication:
         return payload
 
 
+auth = JWTAuthentication()
