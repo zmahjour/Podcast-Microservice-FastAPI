@@ -13,3 +13,5 @@ class Settings(BaseSettings):
             "/home/samane/Documents/MaktabSharif/FinalProject/Project/Podcast/.env"
         )
 
+
+settings = Settings()
