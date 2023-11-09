@@ -6,8 +6,16 @@ from api.api_v1.api import router as podcast_router
 from core.config import settings
 
 
+@asynccontextmanager
+async def redis_lifespan(app: FastAPI):
+    app.state.redis = await aioredis.from_url(
+        f"redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}/{settings.REDIS_DB}"
+    )
+    yield
+    await app.state.redis.close()
 
-app = FastAPI()
+
+app = FastAPI(lifespan=redis_lifespan)
 app.include_router(podcast_router)
 
 
