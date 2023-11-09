@@ -16,3 +16,11 @@ async def all_channels():
 
     return JSONResponse(content=json.loads(response.text))
 
+
+@router.get("/{channel_id}/episodes", status_code=status.HTTP_200_OK)
+async def all_channel_episodes(channel_id: int):
+    rss_episodes_url = f"{settings.RSS_APP_BASE_URL}/podcasts/{channel_id}/episodes/"
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url=rss_episodes_url)
+
+    return JSONResponse(content=json.loads(response.text))
