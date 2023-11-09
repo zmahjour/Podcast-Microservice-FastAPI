@@ -1,10 +1,18 @@
 from pydantic_settings import BaseSettings
+from datetime import timedelta
 
 
 class Settings(BaseSettings):
     # MongoDB
     MONGODB_HOST: str
     MONGODB_PORT: int
+
+    # JWT
+    SECRET_KEY: str
+    ALGORITHM: str
+    ACCESS_EXPIRE_TIME: timedelta = timedelta(days=1)
+    REFRESH_EXPIRE_TIME: timedelta = timedelta(days=30)
+
 
     RSS_APP_BASE_URL: str
 
